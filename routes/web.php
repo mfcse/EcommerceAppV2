@@ -23,8 +23,9 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('/admin')->namespace('Admin')->group(function () {
-    Route::match(['get', 'post'], '/', [AdminController::class, 'login']);
+    Route::match(['get', 'post'], '/', [AdminController::class, 'login'])->name('login');
     Route::middleware(['admin'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'dashboard']);
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     });
 });
